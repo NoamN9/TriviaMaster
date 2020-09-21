@@ -1,41 +1,19 @@
 import React, { Component } from "react";
 
-class Loginform extends Component {
+class Registerform extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      onUserchange: "",
-      onPasswordchange: "",
-    };
+    this.state = {};
   }
 
-  onUserchange = (event) => {
-    this.setState({ onUserchange: event.target.value });
-  };
-
-  onPasswordchange = (event) => {
-    this.setState({ onPasswordchange: event.target.value });
-  };
-
-  onLogin = () => {
-    fetch("http://localhost:5000/login", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        user: this.state.onUserchange,
-        password: this.state.onPasswordchange,
-      })
-    }).then(res=>res.json()).then(data=>console.log(data))
-
-    //trigger a fundtion that will pass in props and will change the app state that is signin= true
-  };
+  someMethod = (e) => {};
 
   render() {
     return (
       <div
         style={{
           width: "500px",
-          height: "300px",
+          height: "350px",
           border: "1px solid black",
           margin: " 0 auto",
           position: "relative",
@@ -45,11 +23,11 @@ class Loginform extends Component {
         }}
       >
         <h1 style={{ color: "white", position: "relative", bottom: "-60px" }}>
-          Login
+          Register
         </h1>
         Login
         <div style={{ position: "relative", bottom: "-50px" }}>
-          <label style={{ color: "white", marginRight: "100px"}}>
+          <label style={{ color: "white", marginRight: "100px" }}>
             <b>Username:</b>
           </label>
           <br />
@@ -57,6 +35,17 @@ class Loginform extends Component {
             type="text"
             name="username"
             placeholder="Enter Username"
+            onChange={this.onUserchange}
+          ></input>
+          <br />
+          <label style={{ color: "white", marginRight: "100px" }}>
+            <b>Email:</b>
+          </label>
+          <br />
+          <input
+            type="text"
+            name="email"
+            placeholder="Enter Email"
             onChange={this.onUserchange}
           ></input>
           <br />
@@ -71,11 +60,11 @@ class Loginform extends Component {
             onChange={this.onPasswordchange}
           ></input>
           <br />
-          <button onClick={this.onLogin}>Login</button>
+          <button onClick={this.onLogin}>Register</button>
         </div>
       </div>
     );
   }
 }
 
-export default Loginform;
+export default Registerform;
