@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Navigation = () => {
+const Navigation = (props) => {
   return (
     <nav
       style={{
@@ -12,17 +12,47 @@ const Navigation = () => {
         justifyContent: "flex-start",
       }}
     >
-      <Link to="/" style={{color:'white'}}>
-        <p style={{ paddingRight: "5px", paddingLeft: "2px", color: "white" }}>
-          Home
-        </p>
-      </Link>
-      <Link to="/about"  style={{color:'white'}}>
-        <p style={{ paddingRight: "5px", color: "white" }}>About</p>
-      </Link>
-      <Link to='/register'  style={{color:'white'}}>
-        <p style={{ color: "white" }}>Register</p>
-      </Link>
+      {props.isLogin ? (
+        <>
+         <Link to="/profile" style={{ color: "white" }}>
+            <p
+              style={{
+                paddingRight: "5px",
+                paddingLeft: "2px",
+                color: "white",
+              }}
+            >
+              Profile
+            </p>
+          </Link>
+          <Link to="/game" style={{ color: "white" }}>
+            <p  style={{  paddingRight: "5px",
+                paddingLeft: "2px",
+                color: "white", }}>Game</p>
+          </Link>
+          <Link to="/" style={{ color: "white" }}>
+            <p onClick={props.SetLoginFalse} style={{ color: "white" }}>Signout</p>
+          </Link>
+        
+        </>
+      ) : (
+        <>
+          <Link to="/" style={{ color: "white" }}>
+            <p
+              style={{
+                paddingRight: "5px",
+                paddingLeft: "2px",
+                color: "white",
+              }}
+            >
+              Login
+            </p>
+          </Link>
+          <Link to="/register" style={{ color: "white" }}>
+            <p style={{ color: "white" }}>Register</p>
+          </Link>
+        </>
+      )}
     </nav>
   );
 };

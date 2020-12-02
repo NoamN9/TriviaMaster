@@ -20,8 +20,17 @@ class Questions extends Component {
   };
 
   render() {
-    return <button onClick={this.OnClickButton}>Get json</button>;
+  const isLoggedIn = this.props.isLogin  
+   
+  return (
+    <div>
+      {isLoggedIn
+        ? <div onClick ={this.OnClickButton}>you login play the game</div>
+        : <div>fk u stop hacking </div>
+      }
+    </div>
+  ); 
+  
   }
 }
-
 export default Questions;

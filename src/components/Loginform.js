@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+
+
 class Loginform extends Component {
   constructor(props) {
     super(props);
@@ -8,6 +10,7 @@ class Loginform extends Component {
       onPasswordchange: "",
     };
   }
+
 
   onUserchange = (event) => {
     this.setState({ onUserchange: event.target.value });
@@ -24,13 +27,23 @@ class Loginform extends Component {
       body: JSON.stringify({
         user: this.state.onUserchange,
         password: this.state.onPasswordchange,
-      })
-    }).then(res=>res.json()).then(data=>console.log(data))
-
-    //trigger a fundtion that will pass in props and will change the app state that is signin= true
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res === "succsess") {
+          this.props.SetLoginTrue();
+          this.props.history.push('/game')
+        } else {
+          alert("wrong password or user name please try agien");
+        }
+      });
   };
 
   render() {
+
+  
+    
     return (
       <div
         style={{
@@ -47,16 +60,15 @@ class Loginform extends Component {
         <h1 style={{ color: "white", position: "relative", bottom: "-60px" }}>
           Login
         </h1>
-        Login
         <div style={{ position: "relative", bottom: "-50px" }}>
-          <label style={{ color: "white", marginRight: "100px"}}>
-            <b>Username:</b>
+          <label style={{ color: "white", marginRight: "100px" }}>
+            <b>Email:</b>
           </label>
           <br />
           <input
             type="text"
-            name="username"
-            placeholder="Enter Username"
+            name="email"
+            placeholder="Enter Email"
             onChange={this.onUserchange}
           ></input>
           <br />

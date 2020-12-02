@@ -3,7 +3,12 @@ import React, { Component } from "react";
 class Registerform extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      onUserchange: "",
+      onEmailChange: "",
+      onPasswordchange: "",
+
+    };
   }
 
   someMethod = (e) => {};
