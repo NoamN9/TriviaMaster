@@ -11,7 +11,13 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { isLogin: false, user: {} };
+    this.state = { isLogin: false,
+       user: {
+         id:0,
+         username:"",
+         email:"",
+         points:0
+       } };
   }
 
   SetLoginTrue = () => {
@@ -21,6 +27,18 @@ class App extends Component {
   SetLoginFalse = () => {
     this.setState({ isLogin: false });
   };
+
+  setUser = (user) =>{
+   
+    this.setState({user:{
+      id:user.id,
+      username:user.username,
+      email:user.email,
+      points:parseInt(user.points)
+    }})     
+   
+
+  }
   render() {
     return (
       <Router>
@@ -35,13 +53,13 @@ class App extends Component {
               path="/"
               exact
               render={(props) => (
-                <Loginform {...props} SetLoginTrue={this.SetLoginTrue} />
+                <Loginform {...props} SetLoginTrue={this.SetLoginTrue} setUser={this.setUser}  />
               )}
             />
             <Route 
             path="/register"
             render={(props) => (
-              <Registerform {...props} SetLoginTrue={this.SetLoginTrue} />
+              <Registerform {...props} SetLoginTrue={this.SetLoginTrue} setUser={this.setUser}  />
             )}
           />
             <Route

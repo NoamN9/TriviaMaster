@@ -25,13 +25,14 @@ class Loginform extends Component {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        user: this.state.onUserchange,
+        email: this.state.onUserchange,
         password: this.state.onPasswordchange,
       }),
     })
       .then((res) => res.json())
-      .then((res) => {
-        if (res === "succsess") {
+      .then((user) => {
+        if (user.id) {
+          this.props.setUser(user);
           this.props.SetLoginTrue();
           this.props.history.push('/game')
         } else {

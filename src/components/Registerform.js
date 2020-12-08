@@ -33,16 +33,16 @@ class Registerform extends Component {
         email:this.state.onEmailchange
       }),
     })
-    .then((res) => {
-      if(!res.ok) throw new Error(res.status);
-      else 
-      return res.json()
-    })
+    .then((res) => res.json())
     .then((user) => {
-      console.log(user); // i will this user to SET THE USER STATE IN THE APP
-      this.props.SetLoginTrue();
-      this.props.history.push('/game')
-    })
+      if (user.id) {
+        this.props.setUser(user);
+        this.props.SetLoginTrue();
+        this.props.history.push('/game')
+      } else {
+        alert("problem happend please try agien later");
+      }
+    });
     
      
   };
