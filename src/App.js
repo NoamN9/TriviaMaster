@@ -38,7 +38,12 @@ class App extends Component {
                 <Loginform {...props} SetLoginTrue={this.SetLoginTrue} />
               )}
             />
-            <Route path="/register" component={Registerform} />
+            <Route 
+            path="/register"
+            render={(props) => (
+              <Registerform {...props} SetLoginTrue={this.SetLoginTrue} />
+            )}
+          />
             <Route
               path="/game"
               render={(props) => (

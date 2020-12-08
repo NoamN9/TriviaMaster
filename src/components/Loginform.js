@@ -35,7 +35,7 @@ class Loginform extends Component {
           this.props.SetLoginTrue();
           this.props.history.push('/game')
         } else {
-          alert("wrong password or user name please try agien");
+          alert("wrong password or user name please try again");
         }
       });
   };

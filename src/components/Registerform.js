@@ -5,13 +5,49 @@ class Registerform extends Component {
     super(props);
     this.state = {
       onUserchange: "",
-      onEmailChange: "",
+      onEmailchange: "",
       onPasswordchange: "",
 
     };
   }
 
-  someMethod = (e) => {};
+  onUserchange = (event) => {
+    this.setState({ onUserchange: event.target.value });
+  };
+
+  onPasswordchange = (event) => {
+    this.setState({ onPasswordchange: event.target.value });
+  };
+
+  onEmailchange = (event) => {
+    this.setState({ onEmailchange: event.target.value });
+  };
+
+  onRegister = () => {
+    fetch("http://localhost:5000/register", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user: this.state.onUserchange,
+        password: this.state.onPasswordchange,
+        email:this.state.onEmailchange
+      }),
+    })
+    .then((res) => {
+      if(!res.ok) throw new Error(res.status);
+      else 
+      return res.json()
+    })
+    .then((user) => {
+      console.log(user); // i will this user to SET THE USER STATE IN THE APP
+      this.props.SetLoginTrue();
+      this.props.history.push('/game')
+    })
+    
+     
+  };
+
+
 
   render() {
     return (
@@ -51,7 +87,7 @@ class Registerform extends Component {
             type="text"
             name="email"
             placeholder="Enter Email"
-            onChange={this.onUserchange}
+            onChange={this.onEmailchange}
           ></input>
           <br />
           <label style={{ color: "white", marginRight: "100px" }}>
@@ -65,7 +101,7 @@ class Registerform extends Component {
             onChange={this.onPasswordchange}
           ></input>
           <br />
-          <button onClick={this.onLogin}>Register</button>
+          <button onClick={this.onRegister}>Register</button>
         </div>
       </div>
     );
