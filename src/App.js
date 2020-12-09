@@ -36,8 +36,15 @@ class App extends Component {
       email:user.email,
       points:parseInt(user.points)
     }})     
-   
+  }
 
+  setinitialState = () =>{
+    this.setState({user:{
+      id:0,
+      username:"",
+      email:"",
+      points:0
+    }})     
   }
   render() {
     return (
@@ -47,6 +54,7 @@ class App extends Component {
           <Navigation
             isLogin={this.state.isLogin}
             SetLoginFalse={this.SetLoginFalse}
+            setinitialState={this.setinitialState}
           />
           <Switch>
             <Route

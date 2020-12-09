@@ -1,7 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
+
+
 const Navigation = (props) => {
+
+  function handleSignout() {
+    props.SetLoginFalse()
+    props.setinitialState()
+  }
+
   return (
     <nav
       style={{
@@ -31,7 +40,7 @@ const Navigation = (props) => {
                 color: "white", }}>Game</p>
           </Link>
           <Link to="/" style={{ color: "white" }}>
-            <p onClick={props.SetLoginFalse} style={{ color: "white" }}>Signout</p>
+            <p onClick={handleSignout} style={{ color: "white" }}>Signout</p>
           </Link>
         
         </>
